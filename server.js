@@ -3,7 +3,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
-const mongoose = require("mongoose");
+const {MongoClient} = require('mongodb');
 const cors = require('cors');
 const routes = require("./server/routes");
 
@@ -15,19 +15,34 @@ app.use(express.static("client/build"));
 
 app.use("/", routes);
 
-const configDB = require('./server/config/database');
+// app.use(express.static(path.join(__dirname, 'build')));
 
-mongoose.Promise = global.Promise;
-mongoose.connect(configDB.url);
-const db = mongoose.connection;
 
-db.on('error', function(err) {
-    console.log('MongoDB connection error:', err);
-});
+async function main(){
+    const uri = "mongodb+srv://MJOAN:MongoDB1!@cluster0.kxj4j.gcp.mongodb.net/webvr-wall?retryWrites=true&w=majority"
 
-db.once("open", function() {
-    console.log("Mongoose connected to version", mongoose.version);
-});
+    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+ 
+    try {
+        await client.connect();
+        await  listDatabases(client);
+ 
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await client.close();
+    }
+}
+
+main().catch(console.error);
+
+async function listDatabases(client){
+    databasesList = await client.db().admin().listDatabases();
+ 
+    console.log("Databases:");
+    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
+};
+
 
 const PORT = process.env.PORT || 3001;
 
