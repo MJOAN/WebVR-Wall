@@ -16,9 +16,9 @@
     "production": {
         "use_env_variable": "production",
         "username": "MJOAN",
-        "password": "4yNNj8UXIu9Kax6n!",
+        "password": "",
         "database": "webvr-wall",
-        "host": "cluster0.kxj4j.gcp.mongodb.net",
+        "host": "",
         "dialect": "mongoDB"
     }
 }
