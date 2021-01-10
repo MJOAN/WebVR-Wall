@@ -14,6 +14,7 @@ import VREarth from './pages/VREarth';
 
 // first route is for jan de wulf, basically they go in order from here
 // https://sheltered-badlands-98413.herokuapp.com/api
+// replaced with: https://motivational-vr-wall.herokuapp.com/ 
 
 // 1 helicopter
 // 2 beach (give credit)

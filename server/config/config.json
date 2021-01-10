@@ -18,7 +18,7 @@
         "username": "MJOAN",
         "password": "4yNNj8UXIu9Kax6n",
         "database": "webvr-wall",
-        "host": "cluster0.kxj4j.gcp.mongodb.net",
+        "host": "",
         "dialect": "mongoDB"
     }
 }

@@ -4,6 +4,7 @@
   "description": "vr image wall",
   "main": "server.js",
   "dependencies": {
+    "aframe-react": "^4.4.0",
     "axios": "^0.21.1",
     "body-parser": "^1.18.2",
 <<<<<<< HEAD
@@ -11,12 +12,19 @@
     "dotenv": "^5.0.0",
 =======
     "concurrently": "^3.6.1",
+<<<<<<< HEAD
 >>>>>>> efd6f6d2 (package-lock update)
+=======
+    "core-util-is": "^1.0.2",
+>>>>>>> 888f0999 (update herkou endpoint)
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "mongodb": "^3.6.3",
     "mongoose": "^5.0.3",
     "morgan": "^1.9.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
     "update": "^0.7.4"
   },

@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 const {MongoClient} = require('mongodb');
 const cors = require('cors');
-const routes = require("./server/routes");
+const routes = require("./server/routes/api");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -21,6 +21,9 @@ app.use(cors())
 
 const uri = process.env.MONGODB_URI || "mongodb://localhost/webvr-wall";
 
+// app.use(express.static("client/build"));
+// app.use("/", routes);
+
 async function main(){
     const uri = "mongodb+srv://MJOAN:4yNNj8UXIu9Kax6n@cluster0.kxj4j.gcp.mongodb.net/webvr-wall?retryWrites=true&w=majority"
 
@@ -29,7 +32,6 @@ async function main(){
     try {
         await client.connect();
         await  listDatabases(client);
- 
     } catch (e) {
         console.error(e);
     } finally {
@@ -41,7 +43,6 @@ main().catch(console.error);
 
 async function listDatabases(client){
     databasesList = await client.db().admin().listDatabases();
- 
     console.log("Databases:");
     databasesList.databases.forEach(db => console.log(` - ${db.name}`));
 };
