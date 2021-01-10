@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(express.static("client/build"));
 app.use("/", routes);
 
-const uri = process.env.MONGODB_URI;
+const uri = process.env.MONGODB_URI || "mongodb://localhost/webvr-wall";
 
 async function main(){
     const uri = "mongodb+srv://MJOAN:4yNNj8UXIu9Kax6n@cluster0.kxj4j.gcp.mongodb.net/webvr-wall?retryWrites=true&w=majority"
