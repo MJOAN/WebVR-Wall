@@ -7,16 +7,8 @@
     "aframe-react": "^4.4.0",
     "axios": "^0.21.1",
     "body-parser": "^1.18.2",
-<<<<<<< HEAD
-    "concurrently": "^3.5.1",
-    "dotenv": "^5.0.0",
-=======
     "concurrently": "^3.6.1",
-<<<<<<< HEAD
->>>>>>> efd6f6d2 (package-lock update)
-=======
     "core-util-is": "^1.0.2",
->>>>>>> 888f0999 (update herkou endpoint)
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "mongodb": "^3.6.3",
