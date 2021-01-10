@@ -3,19 +3,9 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
-const mongoose = require("mongoose");
-const routes = require("./server/routes/api/profile");  // added /api/profile might change
-
-require("dotenv").config(); // added
-
-// Enable CORS from client-side
-app.use(function(req, res, next) {  
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials");
-  res.header("Access-Control-Allow-Credentials", "true");
-  next();
-});
+const {MongoClient} = require('mongodb');
+const cors = require('cors');
+const routes = require("./server/routes");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -25,21 +15,37 @@ if(process.env.NODE_ENVIROMENT === "PRODUCTION"){   // added
 }
 
 app.use("/api", routes); // added /api
+app.use(cors())
 
-const configDB = require('./server/config/database');
+// app.use(express.static(path.join(__dirname, 'build')));
 
-mongoose.Promise = global.Promise;
-mongoose.connect(configDB.url);
+const uri = process.env.MONGODB_URI || "mongodb://localhost/webvr-wall";
 
-const db = mongoose.connection;
+async function main(){
+    const uri = "mongodb+srv://MJOAN:4yNNj8UXIu9Kax6n@cluster0.kxj4j.gcp.mongodb.net/webvr-wall?retryWrites=true&w=majority"
 
-db.on('error', function(err) {
-    console.log('MongoDB connection error:', err);
-});
+    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+ 
+    try {
+        await client.connect();
+        await  listDatabases(client);
+ 
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await client.close();
+    }
+}
 
-db.once("open", function() {
-    console.log("Mongoose connected to version", mongoose.version);
-});
+main().catch(console.error);
+
+async function listDatabases(client){
+    databasesList = await client.db().admin().listDatabases();
+ 
+    console.log("Databases:");
+    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
+};
+
 
 const PORT = process.env.PORT || 3001;
 

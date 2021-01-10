@@ -16,12 +16,10 @@
     "production": {
         "use_env_variable": "production",
         "username": "MJOAN",
-        "password": "Github1!",
-        "database": "heroku_q5pwt2pq",
-        "host": "23728",
+        "password": "4yNNj8UXIu9Kax6n",
+        "database": "webvr-wall",
+        "host": "cluster0.kxj4j.gcp.mongodb.net",
         "dialect": "mongoDB"
     }
 }
 
-//           -u     -p        -address         -host     -dbname
-// mongodb://MJOAN:Github1!@ds123728.mlab.com:23728/heroku_q5pwt2pq"

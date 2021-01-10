@@ -4,18 +4,22 @@
   "description": "vr image wall",
   "main": "server.js",
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.21.1",
     "body-parser": "^1.18.2",
+<<<<<<< HEAD
     "concurrently": "^3.5.1",
     "dotenv": "^5.0.0",
+=======
+    "concurrently": "^3.6.1",
+>>>>>>> efd6f6d2 (package-lock update)
     "cors": "^2.8.4",
     "express": "^4.16.2",
+    "mongodb": "^3.6.3",
     "mongoose": "^5.0.3",
     "morgan": "^1.9.0",
-    "nodemon": "^1.14.11",
+    "react-scripts": "^4.0.1",
     "update": "^0.7.4"
   },
-  "devDependencies": {},
   "scripts": {
     "server": "node server.js",
     "client": "node scripts/start-client.js",
