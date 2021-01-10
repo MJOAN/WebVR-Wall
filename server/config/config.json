@@ -16,22 +16,9 @@
     "production": {
         "use_env_variable": "production",
         "username": "MJOAN",
-<<<<<<< HEAD
-        "password": "",
+        "password": "4yNNj8UXIu9Kax6n",
         "database": "webvr-wall",
-        "host": "",
-=======
-        "password": "Github1!",
-        "database": "heroku_q5pwt2pq",
-        "host": "23728",
->>>>>>> dd91e06c... first commit
+        "host": "cluster0.kxj4j.gcp.mongodb.net",
         "dialect": "mongoDB"
     }
 }
-
-<<<<<<< HEAD
-=======
-//           -u     -p        -address         -host     -dbname
-// mongodb://MJOAN:Github1!@ds123728.mlab.com:23728/heroku_q5pwt2pq"
-// fatal: 'git status --porcelain=2' failed in submodule Constructor-Hangman
->>>>>>> dd91e06c... first commit
