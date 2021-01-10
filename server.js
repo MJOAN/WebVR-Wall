@@ -1,5 +1,4 @@
 const path = require('path');
-const logger = require('morgan');
 const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
@@ -7,22 +6,14 @@ const {MongoClient} = require('mongodb');
 const cors = require('cors');
 const routes = require("./server/routes/api");
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.static("client/build"));
 
-if(process.env.NODE_ENVIROMENT === "PRODUCTION"){   // added
-    app.use(express.static("client/build"));
-}
-
-app.use("/api", routes); // added /api
-app.use(cors())
-
-// app.use(express.static(path.join(__dirname, 'build')));
+app.use("/", routes);
 
 const uri = process.env.MONGODB_URI || "mongodb://localhost/webvr-wall";
-
-// app.use(express.static("client/build"));
-// app.use("/", routes);
 
 async function main(){
     const uri = "mongodb+srv://MJOAN:4yNNj8UXIu9Kax6n@cluster0.kxj4j.gcp.mongodb.net/webvr-wall?retryWrites=true&w=majority"
@@ -46,7 +37,6 @@ async function listDatabases(client){
     console.log("Databases:");
     databasesList.databases.forEach(db => console.log(` - ${db.name}`));
 };
-
 
 const PORT = process.env.PORT || 3001;
 
