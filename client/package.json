@@ -11,6 +11,7 @@
     "core-util-is": "^1.0.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
+    "jquery": "^3.5.1",
     "mongodb": "^3.6.3",
     "mongoose": "^5.0.3",
     "morgan": "^1.9.0",
@@ -23,15 +24,15 @@
   "scripts": {
     "server": "node server.js",
     "client": "node scripts/start-client.js",
-    "start": "node server.js",
-    "dev": "concurrently \"nodemon server.js\" \"npm run client\"", 
+    "start": "react-scripts start",
+    "dev": "concurrently \"nodemon server.js\" \"npm run client\"",
     "build": "node scripts/build.js",
     "seed": "node scripts/seedDB.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AlexEBall/WebVR-Wall.git"
+    "url": "https://github.com/AlexEBall/WebVR-Wall.git"
   },
   "keywords": [
     "aframe",
@@ -44,5 +45,17 @@
   "bugs": {
     "url": "https://github.com/AlexEBall/WebVR-Wall/issues"
   },
-  "homepage": "https://github.com/AlexEBall/WebVR-Wall#readme"
+  "homepage": ".public/index.html",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

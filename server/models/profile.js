@@ -40,5 +40,5 @@ const ProfileSchema = new Schema({
     }
 });
 
-console.log('profile schema created!');
+console.log('profile schema created');
 module.exports = mongoose.model('Profile', ProfileSchema);

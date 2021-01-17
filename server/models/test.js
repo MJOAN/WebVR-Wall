@@ -22,6 +22,6 @@ const TestSchema = new Schema({
     }
 });
 
-console.log('test schema created!');
+console.log('test schema created');
 const Test = mongoose.model("Test", TestSchema);
 module.exports = Test;
