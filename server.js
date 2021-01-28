@@ -1,31 +1,35 @@
-const path = require('path');
+require("dotenv").config();
 const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
-const {MongoClient} = require('mongodb');
 const cors = require('cors');
-const routes = require("./server/routes/api"); // or add profile
+const routes = require("./server/routes/api/"); // or add profile? 
 const Mongoose = require('mongoose');
 
-const dotenv = require("dotenv")
-dotenv.config();
+const uri = process.env.MONGODB_URI //|| "mongodb:localhost/webvr-wall";
 
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(express.static("client/build"));
+Mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log("==> mongoDB Atlas connected");
 
-app.use("/", routes);
+        app.use(cors());
+        app.use(bodyParser.urlencoded({ extended: false }));
+        app.use(bodyParser.json());
 
-const uri = process.env.MONGODB_URI;
+        app.use("/api", routes); // use("/api", routes) ? 
 
-Mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true})
-    .then(() => console.log("==> mongoDB Atlas connected"))
-    .catch(err => console.log(err)
-)
+        const PORT = process.env.PORT || 3001;
 
-const PORT = process.env.PORT || 3000;
+        if (process.env.NODE_ENV === 'production') {
+            app.use(express.static(__dirname + "/client/build"));
+            app.get('*', (req, res) => {
+                res.sendFile(__dirname + "/client/build/index.html");
+            });
+        }
 
-app.listen(PORT, function() {
-    console.log(`🌎  ==> API server listening on PORT ${PORT}!`);
-});
+        app.listen(PORT, function () {
+            console.log(`🌎  ==> API server listening on PORT ${PORT}!`);
+        });
+
+    })
+    .catch(err => console.log(err));

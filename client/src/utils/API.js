@@ -4,14 +4,13 @@ import axios from "axios";
 
 export default {
   // gets all profiles
-  getProfiles: function() {
+  getProfiles: function () {
     //return axios.get("https://motivational-vr-wall.herokuapp.com/api");
-    return(axios.get("http://localhost:3000/api/"))
+    return axios.get("/api/profile");
   },
   // gets profile with given id
-  getProfile: function(id) {
-return axios.get("http://localhost:3000/api/" + id);
+  getProfile: function (id) {
+    return axios.get("/api/" + id);
   }
 };
-
 
